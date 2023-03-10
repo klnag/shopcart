@@ -1,0 +1,12 @@
+export const Navbar = () => {
+	return (
+		<header className="bg-red-400 w-[100vw] h-[6vh] flex">
+			<h1 className="w-[33.33vw] bg-red-600 text-center pt-[2vh]">Shopcart</h1>
+			<input type="text" className="bg-[#F4F7F8] w-[33.33vw] rounded" />
+			<ul className="flex w-[33.33vw] bg-red-800 justify-around ">
+				<li>Account</li>
+				<li>Cart</li>
+			</ul>
+		</header>
+	)
+}
