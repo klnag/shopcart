@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/Navbar"
 
-export const Layout = ({children}) => {
+export const Layout = ({children}: any) => {
 	return (
 		<>
 			<Navbar />
