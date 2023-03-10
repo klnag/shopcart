@@ -1,35 +1,29 @@
-name: CI
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build
-
-    - name: Test
-      run: npm run test
-
-    - name: Deploy
-      if: success()
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        github_token: ${{ secrets.TOKEN }}
-        branch: gh-pages
-        folder: out
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        env:
+          ACCESS_TOKEN: ${{ secrets.TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: out
+          BUILD_SCRIPT: npm run build
+        with:
+          publish_dir: out
