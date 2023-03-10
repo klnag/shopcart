@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+      GITHUB_TOKEN: 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
 
     steps:
     - name: Checkout code
@@ -30,5 +33,6 @@ jobs:
       if: success()
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
+        github_token: $GITHUB_TOKEN
         branch: gh-pages
         folder: out
